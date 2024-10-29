@@ -1,0 +1,78 @@
+{% extends 'myblog/base.html' %}
+{% load static %}
+{% block title %} Django Blogs {% endblock %}
+{% block header %}
+        <!-- Page Header-->
+        <header class="masthead" style="background-image: url({% static 'assets/img/home-bg.jpg' %})">
+            <div class="container position-relative px-4 px-lg-5">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-md-10 col-lg-8 col-xl-7">
+                        <div class="site-heading">
+ 
+                            <h1> Welcome to <br>Blog's Nguyen Ga</h1>
+                            <br>
+                            {% if user.is_authenticated %}
+                            <span class="subheading">
+                            <span >welcome <span class="text-uppercase" style="color:rgb(252, 226, 109); ">{{current_user}} </span> back</span>
+                        </span>
+                            {% else %}
+                            <span class="subheading">sign up for more content </span>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+{% endblock %}
+{% block contents %}
+        <!-- Main Content-->
+        <div class="container px-4 px-lg-5">
+            <div class="row gx-4 gx-lg-5 justify-content-center">
+                <div class="col-md-10 col-lg-8 col-xl-7">
+                    {% for record in object_list %}
+                    <!-- Post preview-->
+                    <div class="post-preview">
+                        <a href="{% url 'home:detail_content' record.pk %}">
+                            <h2 class="post-title" >{{ record.title }}</h2>
+                        </a>
+                       
+                        <!-- Start nội dung học mới -->
+                        <div class="subtitle-container">
+                            <!-- xxx|truncatechars.... lược ngắn xxx -->
+                            <p id="post-subtitle-{{ record.pk }}" class="post-subtitle box">
+                                {{ record.content|truncatechars:65 }}
+                            </p>
+ 
+                            <!-- xxx|length.... độ dài của xxx -->
+                            {% if record.content|length > 65 %}
+                            <a id="see-more-{{ record.pk }}" class="see-more box marg" href="#"
+                            onclick="showFullContent(event, '{{ record.pk }}')"> see more ▼ </a>
+                           
+                            <div id="full-content-{{ record.pk }}" class="full-content box" style="display: none;">
+                                {{ record.content}}
+                            </div>
+ 
+                            <a id="compact-{{ record.pk }}" class="compact box marg" href="#" style="display: none;"
+                            onclick="compactContent(event, '{{ record.pk }}')" > ▲ see less </a>
+                            {% endif %}
+                        </div>
+                        <!-- End nội dung mới -->
+ 
+                       
+                        <p class="post-meta">
+                            Posted by
+                            <a href="#!">Cao ga</a>
+                            {{ record.posted_at }}
+                        </p>
+                    </div>
+                    <!-- Divider-->
+                    <hr class="my-4" />
+                    {% endfor %}
+                    {% include "myblog/pagination.html" %}
+           
+                    <!-- Pager-->
+                    <div class="d-flex justify-content-end mb-4"><a class="btn btn-primary text-uppercase" href="#!">Older Posts →</a></div>
+                </div>
+            </div>
+        </div>
+{% endblock %}

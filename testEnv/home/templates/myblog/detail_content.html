@@ -1,0 +1,38 @@
+{% extends 'myblog/base.html' %}
+{% load static %}
+    <!-- title-->
+{% block title %} details {% endblock %}
+    <!-- Page Header-->
+{% block header %}  
+        <!-- Page Header-->
+    <header class="masthead" style="background-image: url('assets/img/home-bg.jpg')">
+        <div class="container position-relative px-4 px-lg-5">
+            <div class="row gx-4 gx-lg-5 justify-content-center">
+                <div class="col-md-10 col-lg-8 col-xl-7">
+                    <div class="site-heading">
+                        <h1>Clean Blog</h1>
+                        <span class="subheading">A Blog Theme by Start Bootstrap</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+{% endblock %}
+        <!-- Main Content-->
+{% block contents %}
+    <div class="container px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="col-md-10 col-lg-8 col-xl-7">
+                <h1> {{ object.title }}</h1>
+                <p> {{ object.content}}<p>
+                <p>post at:
+                    day {{object.posted_at.day}}
+                    month {{object.posted_at.month}}
+                    year {{object.posted_at.year}}
+                    at
+                    {{object.posted_at.hour}}:{{object.posted_at.minute}}
+                </p>
+            </div>
+        </div>
+    </div>
+{% endblock %}

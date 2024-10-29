@@ -1,0 +1,67 @@
+{% extends 'myblog/base.html' %}
+{% load static %}
+        <!-- Page title-->
+{% block title %}Django's Blog{% endblock %}
+
+{% block header %}
+    <header class="masthead" style="background-image: url('assets/img/home-bg.jpg')">
+        <div class="container position-relative px-4 px-lg-5">
+            <div class="row gx-4 gx-lg-5 justify-content-center">
+                <div class="col-md-10 col-lg-8 col-xl-7">
+                    <div class="site-heading">
+                        <h1>Clean Blog</h1>
+                        <span class="subheading">A Blog Theme by Start Bootstrap</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+{% endblock %}
+        <!-- Main Content-->
+{% block contents %}
+    <div class="container px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="col-md-10 col-lg-8 col-xl-7">
+                {% for record in object_list %}
+                <!-- Post preview-->
+                <div class="post-preview">
+                    <a href="{% url 'home:detail_content' record.pk %}">
+                        <h2 class="post-title">{{ record.title }}</h2>
+                    </a>
+                    <!-- Start new content -->
+                    <div class="subtitle-container">
+                        <!-- truncatechars.... make it short -->
+                        <p id="post-subtitle-{{ record.pk }}" class="post-subtitle box">
+                            {{ record.content|truncatechars:20 }}
+                        </p>
+                        <!-- xxx|length  -->
+                        {% if record.content|length > 65 %}
+                        <a id="see-more-{{ record.pk }}" class="see-more box marg" href="#"
+                        onclick="showFullContent(event, '{{ record.pk }}')"> see more </a>
+
+                        <div id="full-content-{{ record.pk }}" class="full-content box" style="display: none;">
+                            {{ record.content}}
+                        </div>
+
+                        <a id="compact-{{ record.pk }}" class="compact box marg" href ="#" style="display: none;"
+                        onclick="compactContent(event, '{{ record.pk }}')">see less</a>
+                        {% endif %}
+                    </div>
+                    <p class="post-meta">
+                        Posted by
+                        <a href="#!">click here</a>
+                        {{ record.posted_at }}
+                    </p>
+                </div>
+                <hr class="my-a" />
+                {% endfor %}
+                {% include "myblog/pagination.html" %}
+
+
+                <!-- Pager-->
+                <div class="d-flex justify-content-end mb-4"><a class="btn btn-primary text-uppercase" href="#!">Older Posts →</a></div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+

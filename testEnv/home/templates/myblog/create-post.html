@@ -1,0 +1,60 @@
+{% extends 'myblog/base.html' %}
+{% load static %}
+{% block header %}
+        <!-- Page Header-->
+        <header class="masthead" style="background-image: url({% static 'assets/img/home-bg.jpg' %})">
+            <div class="container position-relative px-4 px-lg-5">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-md-10 col-lg-8 col-xl-7">
+                        <div class="site-heading">
+ 
+                            <h1> create new post for <br>Blog's Nguyen Ga</h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+{% endblock %}
+{% block title %} Create a new post {% endblock %}
+ 
+{% block contents %}
+ 
+<div class="container" >
+    <div class="row" >
+        <div class="col offset-2" >
+            <form method="POST"
+                  enctype="multipart/form-data">
+                  <h3> post here !!</h3>
+                  {% csrf_token %}
+                  <table>
+                    <tr>
+                        <th>title: </th>
+                        <td>{{ form.title }}</td>
+                    </tr>
+                    <tr>
+                        <th>category: </th>
+                        <td>{{ form.category }}</td>
+                    </tr>
+                    <tr>
+                        <th>content</th>
+                        <td>{{ form.content }}</td>
+                    </tr>
+                    <tr>
+                        <th>image1</th>
+                        <td>{{ form.image1 }}</td>
+                    </tr>
+                    <tr>
+                        <th>image2</th>
+                        <td>{{ form.image2 }}</td>
+                    </tr>
+                  </table>
+                  <hr>
+                  <button type="submit">Đăng bài</button>
+            </form>
+        </div>
+    </div>
+</div>
+ 
+{% endblock %}
+ 
+ 
