@@ -10,7 +10,7 @@ from django.urls import reverse_lazy
 from django.views.generic import TemplateView, ListView, DetailView, FormView, CreateView
 
 from .forms import ContactForm, PostForm
-from .models import Blog
+from .models import Blog, Post
 
 # Create your views here.
 class IndexView(ListView):
@@ -18,7 +18,8 @@ class IndexView(ListView):
 
     # take data from database and return it back to template
     def get_queryset(self):
-        queryset = Blog.objects.order_by('-posted_at')
+        # đã sửa dâtbase
+        queryset = Post.objects.order_by('-posted_at')
         return queryset
     
     # this is to set the text size
