@@ -1,0 +1,68 @@
+{% extends 'myblog/base.html' %}
+{% load static %}
+{% block title %}Create Post {% endblock %}
+{% block header %}
+
+        <!-- Page Header-->
+        <header class="masthead" style="background-image: url()">
+            <div class="container position-relative px-4 px-lg-5">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-md-10 col-lg-8 col-xl-7">
+                        <div class="site-heading">
+
+                            <h1> Create Post</h1>
+                            <br>
+                            {% if not user.is_authenticated %}
+                            <span class="subheading">Hãy đăng nhập để có thể sử dụng tính năng đăng bài </span>
+                            <br>
+                            <a href="{% url 'accounts:login' %}"><button>Đăng nhập ngay</button></a>
+                            {% endif %}
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+{% endblock %}
+{% block contents %} 
+    {% if user.is_authenticated %}
+    <div class="container" >
+        <div class="row" >
+            <div class="col offset-2" >
+                <form method="POST"
+                    enctype="multipart/form-data">
+                    <h3>Hãy đăng bài post của mình</h3>
+                    {% csrf_token %}
+                    <table>
+                        <tr>
+                            <!-- <th>Tên bài post</th> -->
+                            <td>{{ form.as_p }}</td>
+                                    <!-- Sử dụng {{ form.as_p }} là một cách thuận tiện trong Django để hiển thị 
+                                    tất cả các trường của một form dưới dạng các thẻ <p>, với mỗi trường được
+                                    bao bọc trong một thẻ <p>. Điều này giúp định dạng form một cách tự động và dễ dàng hơn. -->
+                        </tr>
+                        <!-- <tr>
+                            <th>Danh mục</th>
+                            <td>{{ form.category }}</td>
+                        </tr>
+                        <tr>
+                            <th>Nội dung bài post</th>
+                            <td>{{ form.content }}</td>
+                        </tr>
+                        <tr>
+                            <th>Ảnh 1</th>
+                            <td>{{ form.image1 }}</td>
+                        </tr>
+                        <tr>
+                            <th>Ảnh 2</th>
+                            <td>{{ form.image2 }}</td>
+                        </tr> -->
+                    </table>
+                    <hr>
+                    <button type="submit">Đăng bài</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,140 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>{% block title %}{% endblock %}</title>
+        <link rel="icon" type="image/x-icon" href="{% static 'myblog/assets/favicon.ico' %}" />
+        <!-- Font Awesome icons (free version)-->
+        <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+        <!-- Google fonts-->
+        <link href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="{% static 'myblog/css/styles.css' %}" rel="stylesheet" />
+        {%block link%}{%endblock%}
+        <script>
+            // js Xem thêm 
+            function showFullContent(event, recordId) {
+                event.preventDefault(); // Ngăn chặn liên kết chuyển hướng
+                var pst = document.getElementById('post-subtitle-' + recordId);
+                var fct = document.getElementById('full-content-' + recordId);
+                if (fct.style.display === 'none') {
+                    pst.style.display = "none"; // Ẩn nội dung đã hiện
+                    fct.style.display = 'block'; // Hiện nội dung đã ẩn
+                } else {
+                    pst.style.display = "block";
+                    fct.style.display = 'none';                  
+                }
+            }
+
+            // js Thu gọn
+            function compactContent(event, recordId) {
+                event.preventDefault();
+                var fct = document.getElementById('full-content-' + recordId);
+                var pst = document.getElementById('post-subtitle-' + recordId);
+                if (fct.style.display === 'block') {
+                    fct.style.display = 'none';
+                    pst.style.display = "block";
+                }
+            }
+            
+            // js Bình luận
+            function addCommentForm() {
+                const commentForm = document.getElementById('comment-form');
+                if (commentForm.style.display === 'none') {
+                    commentForm.style.display = 'block'; // Hiện nội dung đã ẩn
+                }
+            }
+        
+        </script>
+        <style>
+            .info-container {
+                display: flex;
+                justify-content: space-between;
+                align-items: center; /* Căn giữa theo chiều dọc */
+                padding: 10px; /* Thêm padding nếu cần */
+            }
+
+            .category, .user {
+                margin: 0; /* Bỏ margin để chúng nằm sát nhau */
+            }
+            .txf{
+                color:rgb(255, 255, 255);
+                float: right;
+                margin-right: 500px;
+            }
+            .bgcc{
+            
+                background-color: black;
+                
+            }
+
+            .marg{
+                margin-left: 70%;
+            }
+        
+        </style>
+        {% block head %}{% endblock %}
+        {% block style %}{% endblock %}
+        {% block script %}{% endblock %}
+
+
+    </head>
+    <body>
+        <!-- Navigation-->
+        {% include "myblog/navigation.html" %}
+        
+        <!-- Page Header-->
+        {% block header %}{% endblock %}
+        <!-- Main extends -->
+        {% block main %}{% endblock %}
+        <!-- Page Content-->
+        {% block contents %}{% endblock %}
+        <!-- Footer -->
+        <br>
+        <footer class="border-top">
+            <div class="container px-4 px-lg-5">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-md-10 col-lg-8 col-xl-7">
+                        <ul class="list-inline text-center">
+                            <li class="list-inline-item">
+                                <a href="https://x.com/?mx=2">
+                                    
+                                    <span class="fa-stack fa-lg">
+                                        <i class="fas fa-circle fa-stack-2x"></i>
+                                        <i class="fab fa-twitter fa-stack-1x fa-inverse"></i>
+                                    </span>
+                                </a>
+                            </li>
+                            <li class="list-inline-item">
+                                <a href="https://www.facebook.com/">
+                                    <span class="fa-stack fa-lg">
+                                        <i class="fas fa-circle fa-stack-2x"></i>
+                                        <i class="fab fa-facebook-f fa-stack-1x fa-inverse"></i>
+                                    </span>
+                                </a>
+                            </li>
+                            <li class="list-inline-item">
+                                <a href="https://github.com/">
+                                    <span class="fa-stack fa-lg">
+                                        <i class="fas fa-circle fa-stack-2x"></i>
+                                        <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+                                    </span>
+                                </a>
+                            </li>
+                        </ul>
+                        <div class="small text-center text-muted fst-italic">Copyright &copy; Your Website 2023</div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <!-- Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Core theme JS-->
+        <script src="{% static 'myblog/js/scripts.js' %}"></script>
+    </body>
+</html>

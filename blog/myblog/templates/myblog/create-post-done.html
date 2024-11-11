@@ -1,0 +1,27 @@
+{% extends 'myblog/base.html' %}
+{% block header %}
+    <!-- Page Header-->
+    <header class="masthead" style="background-image: url()" height:10px">
+        <div class="container position-relative px-4 px-lg-5">
+            <div class="row gx-4 gx-lg-5 justify-content-center">
+                <div class="col-md-10 col-lg-8 col-xl-7">
+                    <div class="page-heading">
+                        <h2>Đã đăng bài post của bạn thành công !</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+{% endblock %}
+{% block contents %}
+<div class="container">
+    <div class="row">
+        <div style="text-align: center;">
+            <a href="{% url 'myblog:create-post' %}" class="btn btn-primary my-2">Đăng tiếp</a>
+
+            <a href="{% url 'myblog:index' %}" class="btn btn-secondary my-2">Về home ↩</a>
+            
+        </div>
+    </div>
+</div>
+{% endblock %}

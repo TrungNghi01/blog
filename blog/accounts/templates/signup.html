@@ -1,0 +1,61 @@
+<!-- ベーステンプレートを適用する -->
+{% extends 'myblog/base.html' %}
+{% load static %}
+<!-- ヘッダー情報のページタイトルを設定する -->
+{% block title %}Sign up{% endblock %}
+{% block header %}
+        <!-- Page Header-->
+        <header class="masthead" style="background-image: url({% static 'app/assets/img/sample.jpg' %})">
+            <div class="container position-relative px-4 px-lg-5">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-md-10 col-lg-8 col-xl-7">
+                        <div class="page-heading">
+                            <h1>Sign up</h1>
+                            <span class="subheading">Hãy đăng ký tài khoản mới ở bên dưới</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+{% endblock %}
+
+      {% block contents %}
+      <hr>
+      <div class="container">
+        <div class="row">
+          <div class="col offset-2">
+            
+            <form method = "post">
+              {% csrf_token %}
+              
+              {% for field in form %}
+               <p>
+                 <!-- xuất label -->
+                 {{ field.label_tag }}<br>
+                 <!-- xuất input của label -->
+                 {{ field }}
+                 <!-- xuất help-text -->
+                 {% if field.help_text %}
+                   <small style="color: grey">{{ field.help_text }}</small>
+                 {% endif %}
+                 <!--xuất cảnh báo lỗi nếu gặp lỗi -->
+                 {% for error in field.errors %}
+                   <p style="color: red">{{ error }}</p>
+                 {% endfor %}
+               </p>
+             {% endfor %}
+              <p style="color:red">
+                ※Email mà bạn đăng ký sẽ dùng để đổi mới mật khẩu vui lòng hãy nhập cẩn thận! 
+              </p>
+              <!-- Xuất button Sign up -->
+              <input type="submit" value="Đăng ký">
+            </form>
+            <!-- トップページのリンクテキスト -->
+            <br>
+            <p><a href="{% url 'myblog:index' %}">
+              Quay lại home</a>
+            </p>
+          </div>
+        </div>
+      </div>
+      {% endblock %}

@@ -1,0 +1,45 @@
+{% extends 'myblog/base.html' %}
+{% load static %}
+{% block title %} My page {% endblock %}
+
+    {% block header %}
+
+    <!-- Page Header-->
+    <header class="masthead" style="background-image: url({% static 'myblog/assets/img/about-bg.jpg' %})">
+        <div class="container position-relative px-4 px-lg-5">
+            <div class="row gx-4 gx-lg-5 justify-content-center">
+                <div class="col-md-10 col-lg-8 col-xl-7">
+                    <div class="site-heading">
+
+                        {% if user.is_authenticated %}
+                        <br>
+                        <div style="text-align:center">
+                            {# user..user đang đăng nhập #}
+                            <h1  class=" d-none d-md-block text-white" >Chào mừng ngài
+                                <span style="color:rgb(252, 226, 109)">{{user.username}}</span> đã trở zề</h1>
+                            <br>
+                            {% if object_list.count == 0 %}
+                            <p>Hiện tại ngài 
+                                <strong><span style="color:rgb(252, 226, 109)">{{user.username}}</span> </strong>có 0 bài viết
+                            </p>
+                            {% endif %}
+                        </div>
+                        <hr>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    {% endblock %}
+
+    {% block contents %}
+    
+        {# Hiển thị danh sách các bài post #}
+        {% include "myblog/post-list.html" %}
+
+        {# Hiển thị phần pagination #}
+        {% include "myblog/pagination.html" %}
+
+    {% endblock %}

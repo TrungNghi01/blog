@@ -1,0 +1,312 @@
+{% extends 'myblog/base.html' %}
+{% load static %}
+{% block title %} Detail Content {% endblock %}
+{% block head %}
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+{% endblock %}
+{% block style %}
+    <style>
+/* COPYRIGHT- CODING WITH NICK*/
+* {
+    box-sizing: border-box
+}
+body {
+    font-family: Verdana, sans-serif; margin:0
+
+}
+.mySlides {
+    display: none
+    
+}
+img {
+    vertical-align: middle;
+}
+/* Slideshow container */
+.slideshow-container {
+
+  text-align: center;
+  position: relative;
+  margin: auto;
+}
+/* Next & previous buttons */
+.prev, .next {
+  cursor: pointer;
+  /* position: absolute; */
+  /* top: 50%; */
+  width: 100px;
+  padding: 16px;
+  margin-top: -22px;
+  color: rgb(255, 0, 0);
+  font-weight: bold;
+  font-size: 18px;
+  transition: 0.6s ease;
+  border-radius: 0 9px 9px 0;
+  /* user-select: none; */
+}
+/* Position the "next button" to the right */
+
+.next {
+/* margin-right: 20%; */
+  right: 0;
+  border-radius: 9px 0 0 9px;
+}
+/* On hover, add a black background color with a little bit see-through */
+.prev:hover, .next:hover {
+  background-color: rgba(0,0,0,0.8);
+}
+/* Caption text */
+.text {
+  color: #f2f2f2;
+  font-size: 15px;
+  padding: 8px 12px;
+  position: absolute;
+  bottom: 8px;
+  width: 100%;
+  text-align: center;
+}
+/* Number text (1/3 etc) */
+.numbertext {
+  color: #f2f2f2;
+  font-size: 12px;
+  padding: 8px 12px;
+  position: absolute;
+  top: 0;
+}
+/* The dots/bullets/indicators */
+.dot {
+
+  cursor: pointer;
+  height: 15px;
+  width: 15px;
+  margin: 0 2px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+  transition: background-color 0.6s ease;
+}
+.active, .dot:hover {
+  background-color: #717171;
+}
+/* Fading animation */
+.fade {
+  -webkit-animation-name: fade;
+  -webkit-animation-duration: 1.5s;
+  animation-name: fade;
+  animation-duration: 1.5s;
+}
+@-webkit-keyframes fade {
+  from {opacity: .4} 
+  to {opacity: 1}
+}
+@keyframes fade {
+  from {opacity: .4} 
+  to {opacity: 1}
+}
+/* On smaller screens, decrease text size */
+@media only screen and (max-width: 300px) {
+  .prev, .next,.text {font-size: 11px}
+.dot{
+ height: 10px;
+  width: 10px;}
+}
+@media only screen and (max-width: 500px) {
+  .prev, .next,.text {font-size: 14px}
+}
+
+.form-control.custom-content {
+    margin: 1em;
+    border: 1px solid #ddd;
+    padding: 10px;
+    font-size: 14px;
+    width: 100%;
+    border-radius: 5px;
+}
+
+#comment-form button {
+    margin: 1px 93%;
+    background-color: #4CAF50;
+    color: white;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+
+    </style>
+{% endblock %}
+{% block header %}
+        <!-- Page Header-->
+        <header class="masthead" style="background-image: url({% static 'myblog/assets/img/post-bg.jpg' %})">
+            <div class="container position-relative px-4 px-lg-5">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-md-10 col-lg-8 col-xl-7">
+                        <div class="site-heading">
+                            <h1>Đây là phần Detail Content</h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+{% endblock %}
+{% block contents %}
+        <!-- Main Content-->
+        <div class="container px-4 px-lg-5">
+            <div class="row gx-4 gx-lg-5 justify-content-center">
+                <div class="col-md-10 col-lg-8 col-xl-7">
+                    <!-- Tên bài viết -->
+                    <h1> {{object.title}} </h1>
+                    <div class="info-container">
+                        <!-- Category -->
+                        <h3 class="category">Danh mục: {{object.category}}</h3> 
+                        <!-- User Name -->
+                        <h3 class="user">Người đăng: {{object.user.username}}</h3>
+                    </div>
+                    <!-- object.field.database_set.all.count -->
+                    <h4>Tổng số bài viết có cùng danh mục {{object.category}} là: {{object.category.post_set.all.count}} </h6> 
+                    <!-- Content -->
+                    <p> {{object.content}} </p>
+                    
+                    
+                    <!-- Ảnh 1 editing -->
+                    <div class="slideshow-container">
+                        <div class="mySlides">
+                            <img src="{{ object.image1.url }}" width="700" height="400" />
+                        </div>
+                        {% if object.image2 %}
+                        <div class="mySlides">
+                            <img src="{{ object.image2.url }}" width="700" height="400" />
+                        </div>
+                        
+                    </div>
+                    <div style="text-align:center">
+                        <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+                        <a class="next" onclick="plusSlides(1)">&#10095;</a>
+                    </div>
+                    <br>
+
+                    <div style="text-align:center">
+                        <button class="dot" onclick="currentSlide(1)"></button>
+                        <button class="dot" onclick="currentSlide(2)"></button>
+                    </div>
+                        {% endif %}
+                        <!-- Hiển thị ảnh 1 và ảnh 2 (nếu có)-->
+                            <!-- <img src="{{ object.image1.url }}" width="500" height="500" /> -->
+                        
+                        <!-- {% if object.image2 %}
+                            <img src="{{ object.image2.url }}" width="500" height="500" />
+                        {% endif %} -->
+                    <!-- Ngày giờ đăng bài -->
+                    <p> Được đăng tải vào ngày {{object.posted_at.day}}/{{object.posted_at.month}}/{{object.posted_at.year}}　{{object.posted_at.hour}}:{{object.posted_at.minute}} </p>
+
+                    <!-- Phần bình luận -->
+                    <hr style="margin-top: 1em;">
+                    <h2> Góc bình luận</h2>
+                    <ul>
+                        {% if comments %}
+                            {% for comment in comments %}
+                                <li>
+                                    <strong {% if request.user == object.user %} style="color:#0e4e10" {% endif %} >{{ comment.user.username }}:</strong> {{ comment.content }} <br>
+                                    <small>Được bình luận vào {{ comment.created_at }}</small>
+                                </li>
+                            {% endfor %}
+                        {% else %}
+                            <li>Hiện tại chưa có bình luận cho bài viết này.</li>
+                        {% endif %}
+                    </ul>
+                    
+                    <!-- Add comment -->
+                    {% if user.is_authenticated %}
+                    <button id="add-comment-form" onclick="addCommentForm()" class="btn btn-warning" style="border-color: black;"><span >Thêm bình luận</span></button>
+                    {% else %}
+                    <button id="add-comment-form" style="border-color: black;"><h5>Hãy đăng nhập để bình luận bài viết</h5></button>
+                    {% endif %}
+                    <div id="comment-form" style="display:none;">
+                        <form method="post">
+                            {% csrf_token %}
+                            <!-- {{ form.as_p }} -->
+                            {{ form.content }}
+                            
+                            <button type="submit">Gửi</button>
+                        </form>
+                    </div>
+                    
+                    <hr style="margin-top: 1em;">
+                    <div>
+                        <!-- Hiển thị "Button xóa" nếu bài viết hiện tại là của chủ sở hữu đang loging -->
+                        {# request.user..Người dùng đang đăng nhập hiện tại #} <!-- {# comment #} đây là kiểu ghi chú code theo style của thằng django -->
+                        {# object.user.. Người dùng đã đăng bài viết này #}   
+
+                        {% if request.user == object.user %}
+
+                        <h5>Bài viết này thuộc sở hữu từ bạn. <br> Bạn có quyền: </h5>
+                        <a href="{% url "myblog:edit-post" object.pk %}" class="btn btn-primary">Sửa bài viết</a>
+                        <a href="{% url "myblog:delete-post" object.pk %}" class="btn btn-danger my-2">Xóa bài viết</a>
+                        
+                        {% endif %}
+                    </div>
+                    <a href="{% url 'myblog:index' %}"><p class="btn btn-secondary my-2" style="float:right">Quay lại</p></a>
+                </div>
+            </div>
+{% endblock %}
+
+{% block script %}
+    <script>
+        // comments post detail
+        function addCommentForm() {
+            const commentForm = document.getElementById('comment-form');
+            if (commentForm.style.display === 'none') {
+                commentForm.style.display = 'block'; // Hiện nội dung đã ẩn
+            }
+        }
+
+        // slide ảnh động post detail
+        var slideIndex = 1;
+
+        function plusSlides(n) {
+            showSlides(slideIndex += n);
+        }
+
+        function currentSlide(n) {
+            showSlides(slideIndex = n);
+        }
+
+        function showSlides(n) {
+            var i;
+            var slides = document.getElementsByClassName("mySlides");
+            var dots = document.getElementsByClassName("dot");
+            if (n > slides.length) { slideIndex = 1 }
+            if (n < 1) { slideIndex = slides.length }
+            for (i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";
+            }
+            for (i = 0; i < dots.length; i++) {
+                dots[i].className = dots[i].className.replace(" active", "");
+            }
+            slides[slideIndex - 1].style.display = "block";
+            dots[slideIndex - 1].className += " active";
+        }
+
+        window.onload = function() {
+            showSlides(slideIndex);
+            var autoSlideIndex = 0;
+            function autoShowSlides() {
+                var i;
+                var slides = document.getElementsByClassName("mySlides");
+
+                for (i = 0; i < slides.length; i++) {
+                    slides[i].style.display = "none";
+                }
+
+                autoSlideIndex++;
+                if (autoSlideIndex > slides.length) { autoSlideIndex = 1 }
+
+                slides[autoSlideIndex - 1].style.display = "block";
+                setTimeout(autoShowSlides, 3200);  // Change image every 2 seconds
+            }
+
+            // Start the automatic slideshow
+            autoShowSlides();
+        };
+    </script>
+{% endblock %}

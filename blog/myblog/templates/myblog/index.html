@@ -1,0 +1,45 @@
+{% extends 'myblog/base_sidebar.html' %}
+{% load static %}
+{% block title %} Django Blogs {% endblock %}
+
+
+{% block header %}
+
+        <!-- Page Header-->
+        <header class="masthead" style="background-image: url({% static 'myblog/assets/img/home-bg.jpg' %})">
+            <div class="container position-relative px-4 px-lg-5">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-md-10 col-lg-8 col-xl-7">
+                        <div class="site-heading">
+
+                            <h1> Welcome to <br>AeLagi Blog </h1>
+                            <br>
+                            {% if user.is_authenticated %}
+                            <span class="subheading">
+                            <span>Hế lô ngài
+                                <span class="text-uppercase" style="color:rgb(252, 226, 109); ">{{current_user}}  </span> ^^!
+                            </span> 
+                            {% else %}
+                            <span class="subheading">Hãy đăng nhập để gần gũi hơn với con gà nghi ;v </span>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+{% endblock %}
+
+{% block content %}
+    
+   {# Hiển thị danh sách các bài post #}
+    {% include "myblog/post-list.html" %}
+    
+   {# Nếu không có bài viết thì không cần hiển thị phân trang (pagination) #}
+    {% if object_list.count != 0 %}
+       {# Hiển thị phần pagination #}
+        {% include "myblog/pagination.html" %}
+    {% endif %}
+
+{% endblock %}
+        

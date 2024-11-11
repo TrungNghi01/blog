@@ -1,0 +1,13 @@
+{% extends 'myblog/base.html' %}
+{% block title %}Registration Complete{% endblock %}
+
+      {% block contents %}
+      <div class="container">
+        <div class="row">
+          <div class="col offset-4 py-4">
+            <h3>Đã đăng ký thành công</h3>
+            <p><a href="{% url 'accounts:login' %}">Đăng nhập ở đây</a><p>
+          </div>
+        </div>
+      </div>
+      {% endblock %}

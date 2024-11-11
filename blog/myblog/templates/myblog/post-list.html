@@ -1,0 +1,79 @@
+{% load static %}
+<!-- Main Content-->
+<div class="container px-4 px-lg-5">　
+    <div class="row gx-4 gx-lg-5 justify-content-center" >
+        <div class="col-md-10 col-lg-8 col-xl-10">
+            {% if object_list.count == 0 %}
+                <h3>Hiện tại chưa có user nào đăng bài viết cả</h3>
+            {% else %}
+                {% for record in object_list %}
+                <!-- Post preview-->
+                <div class="post-pv">
+                    <a href="{% url 'myblog:post-detail' record.pk %}">
+                        <h2 class="post-title" >{{ record.title }}
+
+                            {% if request.user == record.user %}
+                            <span class="post-meta btn btn-primary" style=" border-radius: 5em 0  5em ;" ></span>
+                            {% endif %}
+
+                        </h2>
+
+                        
+
+                    </a>
+                    <div class="info-container">
+                        <p class="category" >Thể loại: 
+                            <a href='{% url "myblog:posted-by-category" category=record.category.id %}' style="color:red;">
+                                {{record.category.title}}
+                            </a>
+                        </p>
+
+                        <p class="user">Người đăng:
+                            <a href='{% url "myblog:posted-by-user" user=record.user.id %}' style="color:red;">
+                                {{record.user.username}}
+                            </a>
+                        </p>
+  
+                    </div>
+                    
+                    <div class="subtitle-container">
+                        
+                        <p id="post-subtitle-{{ record.pk }}" class="post-subtitle box">
+                            <!-- xxx|truncatechars.... lược ngắn xxx -->
+                            {{ record.content|truncatechars:245 }}
+                            <!-- xxx|length.... độ dài của xxx -->
+                            {% if record.content|length > 245 %}
+                            <span onclick="showFullContent(event, '{{ record.pk }}')"> Xem thêm ▼ </span>
+                        </p>
+ 
+                        
+                        <p id="full-content-{{ record.pk }}" class="full-content box" style="display: none;">
+                            {{ record.content}}
+                            <span id="compact-{{ record.pk }}" onclick="compactContent(event, '{{ record.pk }}')" > ▲ Thu gọn </span>
+                        </p>
+
+                        
+                        {% endif %}
+                    </div>
+
+                    <p class="post-meta">
+                        Được ngài
+                        <a href='{% url "myblog:posted-by-user" user=record.user.id %}' style="color:red;" >{{record.user.username}}</a>
+                        post vào ngày {{record.posted_at.day}}/{{record.posted_at.month}}/{{record.posted_at.year}}　{{record.posted_at.hour}}:{{record.posted_at.minute}} </p>
+                    </p>
+
+
+                </div>
+                <!-- Divider-->
+                <hr class="my-4" />
+                {% endfor %}
+                
+    
+                <!-- Pager-->
+                <div class="d-flex justify-content-end mb-4" ><a class="btn btn-warning text-uppercase" style="border-color: black;" 
+                    href="{% url 'myblog:create-post' %}">Create a new Post →</a>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</div>

@@ -1,0 +1,17 @@
+<div class="flex-shrink-0 p-3" style="width: 180px;">
+    <span class="d-flex align-items-center pb-3 mb-3 link-body-emphasis text-decoration-none border-bottom">
+        <svg class="bi pe-none me-2" width="30" height="24">
+            <use xlink:href="#bootstrap" />
+        </svg>
+        <span class="fs-5 fw-semibold">Danh mục</span>
+    </span>
+    <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small ms-3">
+        {% for category in categories %}
+        <li>
+            <a href="{% url 'myblog:category-search' category.id %}" class="link-body-emphasis d-inline-flex text-decoration-none rounded">
+                {{category.title}}
+            </a>
+        </li>
+        {% endfor %}
+    </ul>
+</div>
