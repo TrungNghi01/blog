@@ -39,7 +39,8 @@
         {# Hiển thị danh sách các bài post #}
         {% include "myblog/post-list.html" %}
 
+        {% if object_list.count != 0 %}
         {# Hiển thị phần pagination #}
         {% include "myblog/pagination.html" %}
-
+        {% endif %}
     {% endblock %}
