@@ -329,10 +329,8 @@ class MypageView(ListView):
 class PostUpdateView(UpdateView):
     '''View này để edit bài viết tại trang cá nhân của mình'''
 
-    model = Post
     form_class = PostForm
     template_name = 'myblog/edit-post.html'
-    context_object_name = 'post'
     success_url = reverse_lazy('myblog:mypage')  # Chuyển hướng sau khi cập nhật thành công
 
     def get_queryset(self):

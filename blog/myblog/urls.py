@@ -27,7 +27,7 @@ urlpatterns = [
     # url posted by category
     path('posted-by-category/<int:category>', views.PostedByCategoryView.as_view(), name='posted-by-category'),
 
-    # url posted by category
+    # url posted by username
     path('posted-by-user/<int:user>/', views.PostedByUserView.as_view(), name='posted-by-user'),
     
     # url Delete Post
