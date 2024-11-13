@@ -14,25 +14,29 @@ nhưng chúng tôi không ngừng cố gắng, cùng nhau học hỏi và phát 
 -------------------------------------------------------------------------------------------------------
 ★「AELagi Blog」 - DỰ ÁN ĐẦU TAY (VỪA HỌC VỪA LÀM)
 
--- 「AELagi Blog」là nơi tất cả mọi người có thể đăng tải những kỉ niệm hoặc thông báo về một sự kiện gì đó đáng nhớ của bản thân cho bạn bè --
+- AELagi Blog」là nơi tất cả mọi người có thể đăng tải những kỉ niệm hoặc thông báo về một sự kiện gì đó đáng nhớ của bản thân cho bạn bè
 
---  Ngôn ngữ, framwork đã sử dụng: Django, HTML, CSS, JS
+- Ngôn ngữ, framwork đã sử dụng: Django, HTML, CSS, JS
 
 -------------------------------------------------------------------------------------------------------
 ★　Hướng dẫn Cài đặt và Khởi động
-1. Clone dự án về máy
-  git clone <repository-url>
-  cd /blog/blog
-2. Tạo và kích hoạt virtual environment (khuyến khích)
-  python -m venv env
-  source env/bin/activate  # với macOS/Linux
-  .\env\Scripts\activate   # với Windows
-3. Cài đặt các package cần thiết
-  pip install -r requirements.txt
-4. Tạo file .env (nếu cần) và cấu hình các biến môi trường.
-5. Chạy các lệnh migrate để khởi tạo cơ sở dữ liệu
-6. Chạy server
-7. Truy cập blog tại http://127.0.0.1:8000
+1. Clone dự án về máy:
+
+git clone <repository-url>
+
+cd /blog/blog
+
+3. Tạo và kích hoạt virtual environment (khuyến khích): python -m venv env
+
+source env/bin/activate  # với macOS/Linux
+  
+.\env\Scripts\activate   # với Windows
+
+4. Cài đặt các package cần thiết: pip install -r requirements.txt
+5. Tạo file .env (nếu cần) và cấu hình các biến môi trường.
+6. Chạy các lệnh migrate để khởi tạo cơ sở dữ liệu
+7. Chạy server
+8. Truy cập blog tại http://127.0.0.1:8000
 Chúc các bạn có những trải nghiệm thú vị cùng dự án này !!
 -------------------------------------------------------------------------------------------------------
 
