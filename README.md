@@ -33,9 +33,9 @@ nhưng chúng tôi không ngừng cố gắng, cùng nhau học hỏi và phát 
 - .\env\Scripts\activate   # với Windows
 
 4. Cài đặt các package cần thiết: pip install -r requirements.txt
-5. Tạo file .env (nếu cần) và cấu hình các biến môi trường.
-6. Chạy các lệnh migrate để khởi tạo cơ sở dữ liệu
-7. Chạy server
+5. Tạo file .env (nếu cần) và cấu hình các biến môi trường. (có thể skip)
+6. Chạy các lệnh migrate để khởi tạo cơ sở dữ liệu: python manage.py migrate
+7. Chạy server: python manage.py runserver
 8. Truy cập blog tại http://127.0.0.1:8000
 
 Chúc các bạn có những trải nghiệm thú vị cùng dự án này !!
