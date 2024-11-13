@@ -15,7 +15,8 @@ nhưng chúng tôi không ngừng cố gắng, cùng nhau học hỏi và phát 
 ★「AELagi Blog」 - DỰ ÁN ĐẦU TAY (VỪA HỌC VỪA LÀM)
 
 -- 「AELagi Blog」là nơi tất cả mọi người có thể đăng tải những kỉ niệm hoặc thông báo về một sự kiện gì đó đáng nhớ của bản thân cho bạn bè --
---  Django, HTML, CSS, JS
+
+--  Ngôn ngữ, framwork đã sử dụng: Django, HTML, CSS, JS
 
 -------------------------------------------------------------------------------------------------------
 ★　Hướng dẫn Cài đặt và Khởi động
